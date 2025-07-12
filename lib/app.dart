@@ -1,7 +1,7 @@
 import 'package:bits/config.dart';
 import 'package:bits/game/bits_game.dart';
+import 'package:bits/utils/extensions/color_extension.dart';
 import 'package:flame/game.dart';
-import 'package:flame/image_composition.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatefulWidget {
@@ -24,7 +24,7 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(scaffoldBackgroundColor: Config.backgroundColor.darken(0.5)),
+      theme: ThemeData(scaffoldBackgroundColor: Config.backgroundColor.lighten(0.5)),
       home: Scaffold(
         body: SafeArea(
           child: Center(

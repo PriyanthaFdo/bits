@@ -1,5 +1,6 @@
 import 'package:bits/config.dart';
 import 'package:bits/game/bits_world.dart';
+import 'package:bits/utils/extensions/color_extension.dart';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
@@ -10,28 +11,25 @@ class BitsGame extends FlameGame {
 
   @override
   Color backgroundColor() {
-    return Config.backgroundColor;
+    return Config.backgroundColor.darken(0.5);
   }
 
   @override
   Future<void> onLoad() async {
     bitsWorld = BitsWorld();
 
-    // Create camera and attach it to the world
     cameraComponent = CameraComponent.withFixedResolution(
       world: bitsWorld,
-      width: 800, // design resolution width
-      height: 600, // design resolution height
+      width: Config.worldSize.x + 50,
+      height: Config.worldSize.y + 50,
     );
 
     cameraComponent.viewfinder.anchor = Anchor.center;
+    cameraComponent.viewfinder.position = Vector2.zero();
 
     addAll([
       cameraComponent,
       bitsWorld,
     ]);
-
-    // Optionally center the camera on (0, 0)
-    cameraComponent.viewfinder.position = Vector2.zero();
   }
 }

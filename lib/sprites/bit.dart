@@ -11,5 +11,6 @@ class Bit extends CircleComponent with HasGameReference<BitsGame> {
          position: position,
          radius: radius,
          paint: Paint()..color = color,
+         anchor: Anchor.center,
        );
 }
