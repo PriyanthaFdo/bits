@@ -92,10 +92,10 @@ class BitsGame extends FlameGame with ScrollDetector, ScaleDetector, MouseMoveme
       final dragDelta = info.delta.global;
       viewfinder.position -= dragDelta / newZoom;
     } else {
-      viewfinder.zoom = newZoom;
       final focalScreenPoint = hasMouse ? _latestMousePosition : info.eventPosition.global;
 
       final worldBefore = viewfinder.globalToLocal(focalScreenPoint);
+      viewfinder.zoom = newZoom;
       final worldAfter = viewfinder.globalToLocal(focalScreenPoint);
 
       // 4. Adjust camera to keep focal point stable
