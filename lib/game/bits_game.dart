@@ -4,6 +4,7 @@ import 'package:bits/config.dart';
 import 'package:bits/game/bits_world.dart';
 import 'package:bits/utils/extensions/color_extension.dart';
 import 'package:bits/utils/global_getters.dart';
+import 'package:flame/camera.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
@@ -75,6 +76,8 @@ class BitsGame extends FlameGame with ScrollDetector, ScaleDetector, MouseMoveme
 
     // Step 4: offset camera so that the point under the cursor stays the same
     viewfinder.position += (beforeZoomWorldPos - afterZoomWorldPos);
+
+    _boundCameraToWorld(viewfinder);
   }
 
   @override
@@ -101,10 +104,23 @@ class BitsGame extends FlameGame with ScrollDetector, ScaleDetector, MouseMoveme
       // 4. Adjust camera to keep focal point stable
       viewfinder.position += worldBefore - worldAfter;
     }
+
+    _boundCameraToWorld(viewfinder);
   }
 
   @override
   void onScaleEnd(ScaleEndInfo info) {
     _initialZoom = null;
+  }
+
+  void _boundCameraToWorld(Viewfinder viewfinder) {
+    final min = -Config.worldSize / 2;
+    final max = Config.worldSize / 2;
+
+    // Enforce pan limits
+    viewfinder.position = Vector2(
+      viewfinder.position.x.clamp(min.x, max.x),
+      viewfinder.position.y.clamp(min.y, max.y),
+    );
   }
 }
