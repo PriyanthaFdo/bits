@@ -42,7 +42,7 @@ class BitsGame extends FlameGame with ScrollDetector, ScaleDetector, MouseMoveme
     ]);
 
     final screenSize = size;
-    final worldSizeWithMargin = _worldSize * 1.05;
+    final worldSizeWithMargin = _worldSize * (1 + Config.worldMarginSize);
 
     _minZoom = math.min(
       screenSize.x / worldSizeWithMargin.x,

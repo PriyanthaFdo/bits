@@ -6,6 +6,8 @@ class Config {
   static const showGrid = true;
   static const zoomSpeed = 0.002;
   static const maxZoom = 5.0;
+  static const worldMarginSize = 0.1; // %
+  static const gridOverlayCellSize = 100.0;
 
-  static final worldSize = Vector2(1000, 1000);
+  static final worldSize = Vector2(1600, 900);
 }

@@ -32,7 +32,7 @@ class BitsWorld extends World with HasGameReference<BitsGame> {
       ),
     );
 
-    _gridOverlay = GridOverlay(cellSize: 100, showGrid: true);
+    _gridOverlay = GridOverlay(cellSize: Config.gridOverlayCellSize, showGrid: true);
     _bitList.add(Bit(position: Vector2.zero()));
 
     if (Config.showGrid) {
