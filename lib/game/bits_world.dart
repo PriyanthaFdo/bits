@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:bits/config.dart';
 import 'package:bits/game/bits_game.dart';
@@ -9,6 +10,7 @@ import 'package:flutter/material.dart';
 
 class BitsWorld extends World with HasGameReference<BitsGame> {
   final List<Bit> _bitList = <Bit>[];
+  final random = Random();
   late final GridOverlay _gridOverlay;
 
   @override
@@ -33,7 +35,14 @@ class BitsWorld extends World with HasGameReference<BitsGame> {
     );
 
     _gridOverlay = GridOverlay(cellSize: Config.gridOverlayCellSize, showGrid: true);
-    _bitList.add(Bit(position: Vector2.zero()));
+    _bitList.add(
+      Bit(
+        position: Vector2(
+          (random.nextDouble() * Config.worldSize.x) - (Config.worldSize.x / 2),
+          (random.nextDouble() * Config.worldSize.y) - (Config.worldSize.y / 2),
+        ),
+      ),
+    );
 
     if (Config.showGrid) {
       add(_gridOverlay);

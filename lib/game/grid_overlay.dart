@@ -29,13 +29,16 @@ class GridOverlay extends Component with HasGameReference<BitsGame> {
     final bottom = size.y / 2;
 
     // Vertical lines
-    for (double x = left - left % cellSize; x <= right; x += cellSize) {
+    for (double x = left + left % cellSize; x <= right; x += cellSize) {
       canvas.drawLine(Offset(x, top), Offset(x, bottom), _paint);
     }
 
     // Horizontal lines
-    for (double y = top - top % cellSize; y <= bottom; y += cellSize) {
+    for (double y = top + top % cellSize; y <= bottom; y += cellSize) {
       canvas.drawLine(Offset(left, y), Offset(right, y), _paint);
     }
+
+    // Center point
+    canvas.drawCircle(Offset.zero, 3, Paint()..color = Colors.white);
   }
 }

@@ -9,5 +9,5 @@ class Config {
   static const worldMarginSize = 0.1; // %
   static const gridOverlayCellSize = 100.0;
 
-  static final worldSize = Vector2(1600, 900);
+  static final worldSize = Vector2(1500, 900);
 }
