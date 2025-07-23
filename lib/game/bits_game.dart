@@ -89,7 +89,9 @@ class BitsGame extends FlameGame with ScrollDetector, ScaleDetector, MouseMoveme
   void onScaleUpdate(ScaleUpdateInfo info) {
     final viewfinder = _cameraComponent.viewfinder;
     final currentScale = info.scale.global;
-    final newZoom = (_initialZoom! * currentScale.x).clamp(_minZoom, _maxZoom);
+    final scale = math.sqrt(math.pow(currentScale.x, 2) + math.pow(currentScale.y, 2)) / math.sqrt(2);
+
+    final newZoom = (_initialZoom! * scale).clamp(_minZoom, _maxZoom);
 
     if (currentScale.isIdentity()) {
       final dragDelta = info.delta.global;
