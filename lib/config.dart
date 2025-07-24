@@ -14,6 +14,8 @@ class Config {
   static final worldSize = Vector2(1500, 900);
 
   // Bit configs
-  static double bitMaxSpeed = 50;
-  static double bitMaxRotationSpeed = 2 * math.pi;
+  static double bitMaxVelocity = 50;
+  static double bitMaxAcceleration = 50;
+  static double bitMaxAngularVelocity = 2 * math.pi;
+  static double bitMaxAngularAcceleration = 2 * math.pi;
 }

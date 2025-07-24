@@ -6,8 +6,11 @@ import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 
 class Bit extends CircleComponent with HasGameReference<BitsGame> {
-  Vector2 movementVector = Vector2.zero();
-  double rotationSpeed = 0;
+  Vector2 _velocity = Vector2.zero();
+  Vector2 acceleration = Vector2.zero();
+
+  double _angularVelocity = 0;
+  double angularAcceleration = 0;
 
   Bit({
     required Vector2 position,
@@ -47,17 +50,20 @@ class Bit extends CircleComponent with HasGameReference<BitsGame> {
     super.update(dt);
 
     // movement
-    movementVector = Vector2(
-      movementVector.x.clamp(-Config.bitMaxSpeed, Config.bitMaxSpeed),
-      movementVector.y.clamp(-Config.bitMaxSpeed, Config.bitMaxSpeed),
-    );
+    _velocity += acceleration * dt;
 
-    position += movementVector * dt;
+    if (_velocity.length > Config.bitMaxVelocity) {
+      _velocity = _velocity.normalized() * Config.bitMaxVelocity;
+    }
+
+    position += _velocity * dt;
 
     // rotation
-    rotationSpeed = rotationSpeed.clamp(-Config.bitMaxRotationSpeed, Config.bitMaxRotationSpeed);
+    _angularVelocity += angularAcceleration * dt;
 
-    final newAngle = angle + rotationSpeed * dt;
+    _angularVelocity = _angularVelocity.clamp(-Config.bitMaxAngularVelocity, Config.bitMaxAngularVelocity);
+
+    final newAngle = angle + _angularVelocity * dt;
     angle = newAngle % (2 * math.pi);
   }
 }

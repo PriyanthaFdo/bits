@@ -58,12 +58,12 @@ class BitsWorld extends World with HasGameReference<BitsGame> {
     super.update(dt);
 
     for (Bit bit in _bitList) {
-      bit.movementVector = Vector2(
-        (random.nextDouble() * 2 - 1) * Config.bitMaxSpeed,
-        (random.nextDouble() * 2 - 1) * Config.bitMaxSpeed,
+      bit.acceleration = Vector2(
+        (random.nextDouble() * 2 - 1) * Config.bitMaxAcceleration,
+        (random.nextDouble() * 2 - 1) * Config.bitMaxAcceleration,
       );
 
-      bit.rotationSpeed = (random.nextDouble() * 2 - 1) * Config.bitMaxRotationSpeed;
+      bit.angularAcceleration = (random.nextDouble() * 2 - 1) * Config.bitMaxAngularAcceleration;
     }
   }
 }
