@@ -19,6 +19,28 @@ class Bit extends CircleComponent with HasGameReference<BitsGame> {
        );
 
   @override
+  void render(Canvas canvas) {
+    super.render(canvas);
+
+    canvas.save();
+
+    // Move canvas origin to center of the circle
+    canvas.translate(radius, radius);
+
+    final Paint linePaint = Paint()
+      ..color = Colors.black
+      ..strokeWidth = 3;
+
+    // Draw line from center to top
+    final start = Offset(0, -radius / 2);
+    final end = Offset(0, -radius);
+
+    canvas.drawLine(start, end, linePaint);
+
+    canvas.restore();
+  }
+
+  @override
   void update(double dt) {
     super.update(dt);
 

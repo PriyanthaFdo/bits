@@ -13,4 +13,5 @@ class Config {
 
   // Bit configs
   static double bitMaxSpeed = 50;
+  static double bitMaxAngularSpeed = 2;
 }
