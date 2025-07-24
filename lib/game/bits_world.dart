@@ -52,4 +52,16 @@ class BitsWorld extends World with HasGameReference<BitsGame> {
       add(bit);
     }
   }
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+
+    for (Bit bit in _bitList) {
+      bit.movementVector = Vector2(
+        (random.nextDouble() * 2 - 1) * Config.bitMaxSpeed,
+        (random.nextDouble() * 2 - 1) * Config.bitMaxSpeed,
+      );
+    }
+  }
 }

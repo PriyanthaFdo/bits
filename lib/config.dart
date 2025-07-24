@@ -10,4 +10,7 @@ class Config {
   static const gridOverlayCellSize = 100.0;
 
   static final worldSize = Vector2(1500, 900);
+
+  // Bit configs
+  static double bitMaxSpeed = 50;
 }
