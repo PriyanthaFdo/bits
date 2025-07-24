@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:math' as math;
 
 import 'package:flame/components.dart';
@@ -11,7 +12,7 @@ class Config {
   static const worldMarginSize = 0.1; // %
   static const gridOverlayCellSize = 100.0;
 
-  static final worldSize = Vector2(1500, 900);
+  static final worldSize = Platform.isAndroid ? Vector2(900, 1600) * 2 : Vector2(1600, 900);
 
   // Bit configs
   static double bitMaxVelocity = 50;
