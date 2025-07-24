@@ -65,5 +65,13 @@ class Bit extends CircleComponent with HasGameReference<BitsGame> {
 
     final newAngle = angle + _angularVelocity * dt;
     angle = newAngle % (2 * math.pi);
+
+    // clamp to world
+    final halfWorldSize = Config.worldSize / 2;
+
+    position = Vector2(
+      position.x.clamp(-halfWorldSize.x + radius, halfWorldSize.x - radius),
+      position.y.clamp(-halfWorldSize.y + radius, halfWorldSize.y - radius),
+    );
   }
 }
