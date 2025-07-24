@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 
@@ -13,5 +15,5 @@ class Config {
 
   // Bit configs
   static double bitMaxSpeed = 50;
-  static double bitMaxAngularSpeed = 2;
+  static double bitMaxRotationSpeed = 2 * math.pi;
 }

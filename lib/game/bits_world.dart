@@ -62,6 +62,8 @@ class BitsWorld extends World with HasGameReference<BitsGame> {
         (random.nextDouble() * 2 - 1) * Config.bitMaxSpeed,
         (random.nextDouble() * 2 - 1) * Config.bitMaxSpeed,
       );
+
+      bit.rotationSpeed = (random.nextDouble() * 2 - 1) * Config.bitMaxRotationSpeed;
     }
   }
 }

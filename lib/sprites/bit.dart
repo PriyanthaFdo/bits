@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:bits/config.dart';
 import 'package:bits/game/bits_game.dart';
 import 'package:flame/components.dart';
@@ -44,11 +46,18 @@ class Bit extends CircleComponent with HasGameReference<BitsGame> {
   void update(double dt) {
     super.update(dt);
 
+    // movement
     movementVector = Vector2(
       movementVector.x.clamp(-Config.bitMaxSpeed, Config.bitMaxSpeed),
       movementVector.y.clamp(-Config.bitMaxSpeed, Config.bitMaxSpeed),
     );
 
     position += movementVector * dt;
+
+    // rotation
+    rotationSpeed = rotationSpeed.clamp(-Config.bitMaxRotationSpeed, Config.bitMaxRotationSpeed);
+
+    final newAngle = angle + rotationSpeed * dt;
+    angle = newAngle % (2 * math.pi);
   }
 }
