@@ -35,14 +35,15 @@ class BitsWorld extends World with HasGameReference<BitsGame> {
     );
 
     _gridOverlay = GridOverlay(cellSize: Config.gridOverlayCellSize, showGrid: true);
-    _bitList.add(
+    _bitList.addAll([
+      Bit(position: Vector2.zero()),
       Bit(
         position: Vector2(
           (random.nextDouble() * Config.worldSize.x) - (Config.worldSize.x / 2),
           (random.nextDouble() * Config.worldSize.y) - (Config.worldSize.y / 2),
         ),
       ),
-    );
+    ]);
 
     if (Config.showGrid) {
       add(_gridOverlay);
